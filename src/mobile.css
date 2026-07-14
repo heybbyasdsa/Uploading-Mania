@@ -1,0 +1,23 @@
+/* Mobile Responsive Overrides */
+@media (max-width: 768px) {
+  .content { padding: 1rem !important; }
+  .main-header { padding: 0 1rem !important; }
+  .dashboard-header { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; }
+  .dashboard-header .header-actions { width: 100% !important; display: flex !important; justify-content: stretch !important; }
+  .dashboard-header .header-actions button { flex: 1 !important; justify-content: center !important; }
+  .header-user .user-details { display: none !important; }
+  .global-search input { width: 140px !important; }
+  .stats-grid, .charts-grid, .top-videos-grid, .platform-cards { grid-template-columns: 1fr !important; }
+  .table-wrapper { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; border-radius: 0 !important; margin: 0 -1rem !important; width: calc(100% + 2rem) !important; }
+  .sales-table th, .sales-table td { white-space: nowrap !important; padding: 0.75rem !important; }
+  .modal { width: 95% !important; padding: 1.5rem !important; margin: 1rem !important; }
+  .modal-body { grid-template-columns: 1fr !important; }
+  .worker-filters { flex-direction: column !important; }
+  .worker-filters select { width: 100% !important; }
+}
+@media (max-width: 480px) {
+  .modal-actions { flex-direction: column !important; }
+  .modal-actions button { width: 100% !important; }
+  .stat-card { padding: 1.25rem !important; }
+  .global-search { display: none !important; }
+}
