@@ -43,7 +43,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose, role, onLogout }) =
             <div className="logo-icon">
               <Video size={18} />
             </div>
-            <span>Video<span>Hub</span></span>
+            <span>Uploading <span>Mania</span></span>
           </div>
           <button className="mobile-close-btn" onClick={onClose}>
             <X size={20} />
