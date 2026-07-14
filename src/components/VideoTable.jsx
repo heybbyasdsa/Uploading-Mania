@@ -21,6 +21,80 @@ const formatNum = (n) => {
   return n.toLocaleString();
 };
 
+const MobileVideoList = ({ videos, onVideoClick, openMenuId, setOpenMenuId, handleRefreshStats, handleDelete }) => {
+  if (videos.length === 0) {
+    return (
+      <div className="empty-state" style={{ padding: '2rem' }}>
+        <PlaySquare size={48} />
+        <h3>No videos found</h3>
+        <p>Try adjusting your filters.</p>
+      </div>
+    );
+  }
+  return (
+    <div className="mobile-video-list">
+      {videos.map(v => (
+        <div key={v._id} className="mobile-video-card">
+          <div className="mvc-header">
+            <div className="video-thumbnail-cell">
+              {v.thumbnail ? (
+                <img className="video-thumb" src={v.thumbnail} alt={v.title} />
+              ) : (
+                <div className="video-thumb-placeholder"><PlaySquare size={20} /></div>
+              )}
+              <div className="video-title-block">
+                <span className="video-title" onClick={() => onVideoClick(v)}>{v.title}</span>
+                <span className="video-channel">{v.channelName}</span>
+              </div>
+            </div>
+            <div style={{ position: 'relative' }}>
+              <button className="btn-icon" onClick={() => setOpenMenuId(openMenuId === v._id ? null : v._id)}>
+                <MoreVertical size={16} />
+              </button>
+              {openMenuId === v._id && (
+                <div style={{
+                  position: 'absolute', right: 0, top: 30, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 10,
+                  boxShadow: 'var(--shadow-lg)', zIndex: 99, minWidth: 160, overflow: 'hidden'
+                }}>
+                  <button style={{ width: '100%', padding: '0.65rem 1rem', textAlign: 'left', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-primary)' }} onClick={() => { onVideoClick(v); setOpenMenuId(null); }}>
+                    <Eye size={15} /> Details
+                  </button>
+                  <button style={{ width: '100%', padding: '0.65rem 1rem', textAlign: 'left', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-primary)' }} onClick={() => window.open(v.url, '_blank')}>
+                    <ExternalLink size={15} /> Open Link
+                  </button>
+                  {v.platform === 'youtube' && (
+                    <button style={{ width: '100%', padding: '0.65rem 1rem', textAlign: 'left', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: 8, color: '#2563eb' }} onClick={() => handleRefreshStats(v._id)}>
+                      <RefreshCw size={15} /> Refresh
+                    </button>
+                  )}
+                  <button style={{ width: '100%', padding: '0.65rem 1rem', textAlign: 'left', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: 8, color: 'var(--accent-danger)', borderTop: '1px solid var(--border)' }} onClick={() => handleDelete(v._id)}>
+                    <Trash2 size={15} /> Remove
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="mvc-stats">
+            <div className="mvc-stat"><Eye size={13}/> {formatNum(v.stats?.views)}</div>
+            <div className="mvc-stat"><ThumbsUp size={13}/> {formatNum(v.stats?.likes)}</div>
+            <div className="mvc-stat"><MessageCircle size={13}/> {formatNum(v.stats?.comments)}</div>
+          </div>
+          <div className="mvc-footer">
+            <span className={`platform-badge platform-badge-${v.platform}`} style={{ padding: '2px 6px', fontSize: '0.7rem' }}>
+              <PlatformIcon platform={v.platform} size={10} /> {v.platform}
+            </span>
+            <div className="customer-info" style={{ gap: 4 }}>
+              <div className="customer-avatar" style={{ width: 18, height: 18, fontSize: '0.6rem' }}>{v.workerName?.[0]?.toUpperCase()}</div>
+              <span style={{ fontSize: '0.75rem' }}>{v.workerName}</span>
+            </div>
+            <span className="text-muted text-xs">{new Date(v.addedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const VideoTable = ({
   videos,
   total,
@@ -150,7 +224,8 @@ const VideoTable = ({
       )}
 
       <div className="table-wrapper card">
-        <table className="sales-table">
+        <div className="desktop-table">
+          <table className="sales-table">
           <thead>
             <tr>
               <th>Video</th>
@@ -266,6 +341,15 @@ const VideoTable = ({
             )}
           </tbody>
         </table>
+        </div>
+        <MobileVideoList 
+          videos={videos} 
+          onVideoClick={onVideoClick} 
+          openMenuId={openMenuId} 
+          setOpenMenuId={setOpenMenuId} 
+          handleRefreshStats={handleRefreshStats} 
+          handleDelete={handleDelete} 
+        />
 
         <div className="table-footer">
           <p>{total > 0 ? `Showing ${startIndex}–${endIndex} of ${total} videos` : 'No videos'}</p>
