@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, ExternalLink, RefreshCw, Eye, ThumbsUp, MessageCircle, Share2, Youtube, Music2, Instagram, PlaySquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api';
 
 const PlatformIcon = ({ platform, size = 16 }) => {
   if (platform === 'youtube') return <Youtube size={size} style={{ color: '#ff0000' }} />;

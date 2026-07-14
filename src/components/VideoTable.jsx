@@ -5,7 +5,7 @@ import {
   Youtube, Music2, Instagram, PlaySquare, RefreshCw, Trash2, ExternalLink
 } from 'lucide-react';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api';
 
 const PlatformIcon = ({ platform, size = 14 }) => {
   if (platform === 'youtube') return <Youtube size={size} style={{ color: '#ff0000' }} />;

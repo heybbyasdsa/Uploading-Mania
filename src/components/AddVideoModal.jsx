@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Link2, Youtube, Music2, Instagram, PlaySquare, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api';
 
 const detectPlatformFE = (url) => {
   if (/youtube\.com|youtu\.be/.test(url)) return 'youtube';

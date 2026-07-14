@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Users, Plus, Trash2, X, Eye, PlaySquare, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api';
 
 const formatNum = (n) => {
   if (!n && n !== 0) return '0';
