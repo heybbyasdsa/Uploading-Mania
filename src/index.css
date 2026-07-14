@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-main: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-sidebar: #ffffff;
+  --border: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+
+  --accent-primary: #2563eb;
+  --accent-success: #16a34a;
+  --accent-pending: #d97706;
+  --accent-danger: #dc2626;
+
+  /* Platform Colors */
+  --youtube-red: #ff0000;
+  --youtube-bg: rgba(255, 0, 0, 0.08);
+  --youtube-border: rgba(255, 0, 0, 0.18);
+  --tiktok-dark: #010101;
+  --tiktok-bg: rgba(1, 1, 1, 0.07);
+  --tiktok-border: rgba(1, 1, 1, 0.14);
+  --instagram-pink: #e1306c;
+  --instagram-bg: rgba(225, 48, 108, 0.08);
+  --instagram-border: rgba(225, 48, 108, 0.18);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
+
+  --sidebar-width: 260px;
+  --header-height: 64px;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--bg-main);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Utility Classes */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badge-paid {
+  background: rgba(22, 163, 74, 0.08);
+  color: var(--accent-success);
+  border: 1px solid rgba(22, 163, 74, 0.15);
+}
+
+.badge-pending {
+  background: rgba(217, 119, 6, 0.08);
+  color: var(--accent-pending);
+  border: 1px solid rgba(217, 119, 6, 0.15);
+}
+
+.text-success { color: var(--accent-success); }
+.text-pending { color: var(--accent-pending); }
+.text-danger { color: var(--accent-danger); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+
+/* ==========================================================================
+   Dark Theme Overrides
+   ========================================================================== */
+[data-theme='dark'] {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --bg-sidebar: #1e293b;
+  --border: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  
+  --youtube-bg: rgba(255, 0, 0, 0.15);
+  --tiktok-bg: rgba(255, 255, 255, 0.1);
+  --tiktok-border: rgba(255, 255, 255, 0.2);
+  --instagram-bg: rgba(225, 48, 108, 0.15);
+}
+
+/* Dark Theme Specific Element Overrides */
+[data-theme='dark'] .search-box {
+  background: var(--bg-main);
+}
+[data-theme='dark'] .icon-btn:hover {
+  background: var(--bg-main);
+}
+[data-theme='dark'] .glass {
+  background: rgba(30, 41, 59, 0.7);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme='dark'] .btn-secondary {
+  background: var(--bg-main);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+[data-theme='dark'] .btn-secondary:hover {
+  background: var(--border);
+}
+[data-theme='dark'] .input-with-icon input {
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+[data-theme='dark'] .input-with-icon input:focus {
+  background: var(--bg-card);
+}
+[data-theme='dark'] select, [data-theme='dark'] input, [data-theme='dark'] textarea {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+[data-theme='dark'] .card {
+  background: var(--bg-card);
+}
+[data-theme='dark'] .modal-content {
+  background: var(--bg-card);
+}
